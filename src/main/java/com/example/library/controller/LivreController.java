@@ -18,8 +18,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class LivreController {
-    @FXML
-    private TextField codeField;
 
     @FXML
     private TextField titreField;

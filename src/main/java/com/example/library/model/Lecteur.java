@@ -99,8 +99,6 @@ public class Lecteur {
                 }
             }
         }
-
-        // Aucun lecteur trouvé avec le CIN spécifié
         return null;
     }
 

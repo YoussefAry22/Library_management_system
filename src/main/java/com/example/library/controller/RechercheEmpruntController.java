@@ -16,7 +16,8 @@ import java.util.Date;
 import java.util.List;
 
 public class RechercheEmpruntController {
-
+    @FXML
+    public Label lblresultat;
     @FXML
     private TableView<Emprunt> empruntTable;
 
@@ -28,8 +29,7 @@ public class RechercheEmpruntController {
 
     @FXML
     private TableColumn<Emprunt, Integer> codeLecteurColumn;
-    @FXML
-    private Label lblResultat;
+
     @FXML
     private TableColumn<Emprunt, Date> dateEmpruntColumn;
 
@@ -65,11 +65,10 @@ public class RechercheEmpruntController {
             // Mettez à jour la TableView avec les résultats de la recherche
             ObservableList<Emprunt> empruntList = FXCollections.observableArrayList(allEmprunts);
             empruntTable.setItems(empruntList);
-            lblResultat.setText("Emprunts chargés depuis la base de données : " + allEmprunts.size() + " emprunt(s).");
+            lblresultat.setText("Emprunts chargés depuis la base de données : " + allEmprunts.size() + " emprunt(s).");
         } else {
-            // Aucun emprunt trouvé
             // Assuming lblResultat is defined in your FXML file
-            lblResultat.setText("Aucun emprunt trouvé dans la base de données.");
+            lblresultat.setText("Aucun emprunt trouvé dans la base de données.");
         }
     }
 }

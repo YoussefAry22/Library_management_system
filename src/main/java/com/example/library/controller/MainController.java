@@ -64,7 +64,6 @@ public class MainController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            // Check for any exception details in the console
         }
     }
 

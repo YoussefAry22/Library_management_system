@@ -24,16 +24,12 @@ public class LoginController {
 
     @FXML
     private Label lblMessage;
-    private Main mainApp;
-    private Service<Void> messageService;
+    private final Main mainApp;
 
     public LoginController(Main mainApp) {
         this.mainApp = mainApp;
     }
-    @FXML
-    private void initialize() {
-        // You can add initialization code here if needed
-    }
+
 
     @FXML
     private void handleLoginButtonAction() {
@@ -57,10 +53,8 @@ public class LoginController {
                         if (resultSet.next()) {
                             // Login successful
                             lblMessage.setText("Login successful!");
-                            // You can navigate to the main application window here
                             mainApp.showMainView();
                         } else {
-                            // Invalid credentials
                             lblMessage.setText("Invalid credentials. Please try again.");
                         }
                     }

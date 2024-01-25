@@ -88,7 +88,7 @@ public class LecteurController {
                 lblResultat.setText("Veuillez saisir le CIN du lecteur à supprimer.");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
         }
     }
 

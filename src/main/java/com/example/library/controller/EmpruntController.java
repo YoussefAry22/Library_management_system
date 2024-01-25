@@ -19,17 +19,9 @@ import java.text.SimpleDateFormat;
 public class EmpruntController {
 
     @FXML
-    private SplitPane splitPane;
-    @FXML
     private TextField txtIdEmprunt;
     @FXML
-    private TextField txtDateRetourEffective;
-    @FXML
     private Label lblResultat;
-
-    @FXML
-    private Button btnAjouterEmprunt;
-
     @FXML
     private TextField txtCodeLivre;
 
@@ -42,6 +34,7 @@ public class EmpruntController {
     @FXML
     private TextField txtDateRetourPrevu;
     private Emprunt emprunt;
+
     public EmpruntController() {
         this.emprunt = new Emprunt(0,0,null,null,null);
     }
@@ -82,29 +75,22 @@ public class EmpruntController {
 
 
     @FXML
-    public void retournerEmprunt() {
+    private void retournerEmprunt() {
         try {
-            int idEmpruntValue = Integer.parseInt(txtIdEmprunt.getText());
+            int idEmprunt = Integer.parseInt(txtIdEmprunt.getText());
+            Emprunt emprunt = new Emprunt(idEmprunt, 0, 0, null, null, null);
 
-            try (Connection connection = DatabaseUtil.getConnection()) {
-                Emprunt emprunt = new Emprunt(idEmpruntValue, 0, 0, null, null, null);
-                emprunt.retourerEmprunt(connection, idEmpruntValue);
+            // Appel de la méthode correcte pour retourner l'emprunt
+            emprunt.retournerEmpruntById(idEmprunt);
 
-                txtIdEmprunt.clear();
-                lblResultat.setText("Retour avec succès!");
-
-            } catch (SQLException e) {
-                lblResultat.setText("Erreur lors de la mise à jour de l'emprunt dans la base de données.");
-                e.printStackTrace();
-            } catch (RuntimeException e) {
-                lblResultat.setText("Erreur inattendue lors de la connexion à la base de données.");
-                e.printStackTrace();
-            }
-
+            lblResultat.setText("Emprunt retourné avec succès!");
         } catch (NumberFormatException e) {
-            lblResultat.setText("Veuillez saisir des valeurs numériques pour le code de l'emprunt.");
+            lblResultat.setText("Veuillez saisir un ID d'emprunt valide.");
+        } catch (SQLException e) {
+            lblResultat.setText("Erreur lors du retour de l'emprunt: " + e.getMessage());
         }
     }
+
 
 
 }

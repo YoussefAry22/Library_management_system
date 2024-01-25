@@ -132,7 +132,7 @@ public class Emprunt {
     }
 
 
-    public void retourerEmprunt(Connection connection, int idEmpruntToUpdate) throws SQLException {
+    public void retournerEmprunt(Connection connection, int idEmpruntToUpdate) throws SQLException {
         String query = "UPDATE emprunt SET dateRetourEffective = CURRENT_DATE WHERE idEmprunt = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -143,4 +143,14 @@ public class Emprunt {
             throw new RuntimeException(e);
         }
     }
+    public void retournerEmpruntById(int idEmpruntToUpdate) throws SQLException {
+        Connection connection = null;
+        try {
+            connection = DatabaseUtil.getConnection();
+            retournerEmprunt(connection, idEmpruntToUpdate);
+        } finally {
+            DatabaseUtil.closeConnection(connection);
+        }
+    }
+
 }
